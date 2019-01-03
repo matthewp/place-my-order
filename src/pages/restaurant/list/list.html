@@ -1,0 +1,12 @@
+<script src="../../../../node_modules/steal/steal.js"></script>
+<script type="steal-module">
+  import PmoRestaurantList from "~/pages/restaurant/list/";
+  import "place-my-order-assets";
+  import "~/models/fixtures/";
+
+  let pmoRestaurantList = new PmoRestaurantList({
+    viewModel: {}
+  });
+
+  document.body.appendChild(pmoRestaurantList.element);
+</script>
