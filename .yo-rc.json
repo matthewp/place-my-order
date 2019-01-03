@@ -1,0 +1,20 @@
+{
+  "donejs-cordova": {
+    "name": "place my order",
+    "id": "com.donejs.placemyorder",
+    "platforms": [
+      "android"
+    ],
+    "baseURL": ""
+  },
+  "donejs-electron": {
+    "main": "electron-main.js",
+    "platforms": [
+      "win32"
+    ],
+    "archs": [
+      "x64"
+    ],
+    "baseURL": "http://www.place-my-order.com"
+  }
+}

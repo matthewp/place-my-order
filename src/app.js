@@ -1,4 +1,4 @@
-import { DefineMap, route } from 'can';
+import { DefineMap, route, value } from 'can';
 import RoutePushstate from 'can-route-pushstate';
 import debug from 'can-debug#?./is-dev';
 
@@ -30,6 +30,32 @@ const AppViewModel = DefineMap.extend("AppViewModel", {
       }
 
       case 'restaurants': {
+        if(this.routeData.slug) {
+          switch(this.routeData.action) {
+            case 'order': {
+              return steal.import("~/pages/order/new/")
+              .then(({default: OrderNew}) => {
+                return new OrderNew({
+                  viewModel: {
+                    slug: value.from(this.routeData, "slug")
+                  }
+                })
+              });
+            }
+
+            default: {
+              return steal.import("~/pages/restaurant/details.component")
+              .then(({default: RestaurantDetail}) => {
+                return new RestaurantDetail({
+                  viewModel: {
+                    slug: value.from(this.routeData, "slug")
+                  }
+                });
+              });
+            }
+          }
+        }
+
         return steal.import('~/pages/restaurant/list/').then(({default: RestaurantList}) => {
           return new RestaurantList();
         });
