@@ -5,3 +5,20 @@ addons:
 before_install:
   - 'export DISPLAY=:99.0'
   - sh -e /etc/init.d/xvfb start
+deploy:
+  skip_cleanup: true
+  provider: heroku
+  app: arcane-eyrie-37957
+  api_key: >-
+    rOSVST80li9n4UCP54k8uZdeR5Yl5LRi1Ycez4XSj4L39sDFsPvvaY8niY7h5iINk5v6i2LFV19z+anwjBuUC51edBpqAtyx4WFH4/9UitmlMpmw1jyXIpcR+xfblGS4QBMRUfdUBnVwHjMCugOJgxp3VXgYBxsXp5AJ0GiAszTocx+g9HIqpB5yN9SXAQbxCw9a8oUjzsHs1TVmJjkkGKOw1RqnuIr1WeSWlpK4/sNcRHkHLs5asiiwx5r3Ftftm/Tab/1UYfzYF565WjLZ6Mrc2dnkqOaRn/mKdITIupPYGy+6UFshJzTgMH2+3lQ8UvlmNAhyhMvL74josu13crTxKraUvI/uwNqxteyfEjD79euRPT31qaIEvd8y4TkTIu9rcyfxp0iIqdPwDek4ZoppmNDTXkAG3xyJUin5UXCuLE1iX3/12Cx3QLZk4SJdxQTUtu59PF9S21nxAq4TC7oc9zrpkVyP1GnJc5j/2Wza2uW/C0Oq3Z9DJUKsvI43amdF5mzCjf2kFDG/ScLNyCtBe0pHAY+AscB5N0cuxv5G+OyIRpSJxfjErSR2XBfWIVxXJy69Wv1qgH55yB4bZnZRXKGFqdCkEm/GpCwURErgQml40u2aqv5rcjWaPHQePqWsktWiUmFCmVlDyJrYljAGyOk7jHP9Dbv+l5SypYo=
+before_deploy:
+  - git config --global user.email "me@example.com"
+  - git config --global user.name "deploy bot"
+  - node build
+  - git add dist/ --force
+  - git commit -m "Updating build."
+  - 'npm run deploy:ci'
+env:
+  global:
+    - secure: >-
+        a3TqSoT5g1rbBx6xtu8D035qCuxbdDd+lF3fTDicVgwBjOdThPCebpJ6mzBSNVs1NhwysXFLhnatKlw8D9a5B34doP++ickM6iRUrdMa25sqkWcWvZ3p0L6b7ksJlcF0DzKyTgavWvl/y+qRotjbZ1V8lAHxUwcpRyWrURBO89NQ5dQS2vH6ZM8opcrB+Qw2BfW1OZASWrh0IvaXN383fcyoya93gqLZ7LF/nIKew7EqCT1GN3N0FJ1eRwNjcNMJsb+l4eu9nzIIckLQr86fO6pfbLHm9WIwnDoaxGYERBmvsZMuRWglwVYwwTEmag+EBLv+kxEPdZ4KNTtlacNWnPxLWLDNm801Zo8k2dDQFsVyMrYLlzp71lTYdz0L1WD+sUSTQbwYir7uZlnhN5blAOetYDqpRt6OUsmX5kvGeH4v8qJwCc6iZPo+Lgnvnq/4LSeNrIipDVJpgWMy0Ec9ohM/oAeKqPNBoJLfOpgqvb+uKVZWFUg+7Y5feL1jlVtI3k9/Hh5QzeXlbLxDC0yUsKH4krz1BdoCLsbnNEk18ouQORcXiDutYZ02aweU/AoiRaR3WbER6mngelk96Wgnhhx4YC9hzU89U2MU3FGV7IBxysSWbzHTqzMRZhPFW6D9KedmBTSYgiFcan+hk1AMbMKif60OzZ1HChanVA4L9oM=
